@@ -1,18 +1,24 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, Pressable} from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
+import {useNavigation} from '@react-navigation/native';
 
 import styles from './styles';
 
 const Destination = (props) => {
   const {location} = props;
+  const navigation = useNavigation();
+  const onPressHandler = () => {
+    navigation.navigate('BookingGuests');
+  };
+
   return (
-    <View style={styles.row}>
+    <Pressable onPress={onPressHandler} style={styles.row}>
       <View style={styles.iconContainer}>
         <Entypo name={'location-pin'} size={25} />
       </View>
       <Text>{location.description}</Text>
-    </View>
+    </Pressable>
   );
 };
 

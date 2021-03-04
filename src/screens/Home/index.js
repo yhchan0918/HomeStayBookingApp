@@ -1,11 +1,16 @@
 import React from 'react';
 import {View, ImageBackground, Text, Pressable} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
+
 import styles from './styles';
 import BG from '../../../assets/images/wallpaper.jpg';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 
 const HomeScreen = () => {
-  const onPressHandler = () => {};
+  const navigation = useNavigation();
+  const onPressHandler = () => {
+    navigation.navigate('Destination Search');
+  };
   return (
     <View>
       <Pressable style={styles.searchBtn} onPress={onPressHandler}>

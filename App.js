@@ -1,19 +1,13 @@
 import React from 'react';
-import {SafeAreaView} from 'react-native';
-import Post from './src/components/Post';
-import HomeScreen from './src/screens/Home';
-import feed from './assets/data/feed';
-import SearchResultsScreen from './src/screens/SearchResults';
-import DestinationSearchScreen from './src/screens/DestinationSeach';
-import BookingGuestsScreen from './src/screens/BookingGuests';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
+import 'react-native-gesture-handler';
+
+import Router from './src/navigation/Router';
 
 export default function App() {
   return (
-    <SafeAreaView>
-      {/* <HomeScreen /> */}
-      {/* <SearchResultsScreen /> */}
-      {/* <DestinationSearchScreen /> */}
-      <BookingGuestsScreen />
-    </SafeAreaView>
+    <SafeAreaProvider>
+      <Router />
+    </SafeAreaProvider>
   );
 }
