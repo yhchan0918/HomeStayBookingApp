@@ -5,13 +5,15 @@ import HomeScreen from './src/screens/Home';
 import feed from './assets/data/feed';
 import SearchResultsScreen from './src/screens/SearchResults';
 import DestinationSearchScreen from './src/screens/DestinationSeach';
+import BookingGuestsScreen from './src/screens/BookingGuests';
 
 export default function App() {
   return (
     <SafeAreaView>
       {/* <HomeScreen /> */}
       {/* <SearchResultsScreen /> */}
-      <DestinationSearchScreen />
+      {/* <DestinationSearchScreen /> */}
+      <BookingGuestsScreen />
     </SafeAreaView>
   );
 }
