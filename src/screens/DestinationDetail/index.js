@@ -1,19 +1,36 @@
-import React from 'react';
-import {SafeAreaView} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {SafeAreaView, ActivityIndicator} from 'react-native';
 import {useRoute} from '@react-navigation/native';
+import {API, graphqlOperation} from 'aws-amplify';
 
 import DetailedDestinationPost from '../../components/DetailedDestinationPost';
-import places from '../../../assets/data/feed';
 import styles from './styles';
+import {getAccommodation} from '../../graphql/queries';
 
 const DestinationDetailScreen = () => {
   const route = useRoute();
-  console.log(route.params.postID);
-  const post = places.find((place) => place.id === route.params.postID);
+  const [accommdetail, setAccommDetail] = useState(null);
+
+  useEffect(() => {
+    const fetchSingleAccomm = async () => {
+      try {
+        const response = await API.graphql(
+          graphqlOperation(getAccommodation, {id: route.params.postID}),
+        );
+
+        setAccommDetail(response.data.getAccommodation);
+      } catch (e) {}
+    };
+    fetchSingleAccomm();
+  }, []);
 
   return (
     <SafeAreaView style={styles.container}>
-      <DetailedDestinationPost post={post} />
+      {!accommdetail ? (
+        <ActivityIndicator size="large" />
+      ) : (
+        <DetailedDestinationPost post={accommdetail} />
+      )}
     </SafeAreaView>
   );
 };

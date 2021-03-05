@@ -15,6 +15,12 @@ const BookingGuestsScreen = () => {
       screen: 'Explore',
       params: {
         screen: 'SearchResults',
+        params: {
+          screen: 'List',
+          params: {
+            guests: adultsPax + childrenPax,
+          },
+        },
       },
     });
   };

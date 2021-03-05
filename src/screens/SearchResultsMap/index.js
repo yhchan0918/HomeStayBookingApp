@@ -8,7 +8,8 @@ import CarouselItem from '../../components/CarouselItem';
 import {listAccommodations} from '../../graphql/queries';
 import styles from './styles';
 
-const SearchResultsMapScreen = () => {
+const SearchResultsMapScreen = (props) => {
+  const {guests} = props;
   const [accommodations, setAccommodations] = useState([]);
   const [selectedPlaceID, setSelectedPlaceID] = useState(null);
 
@@ -44,7 +45,13 @@ const SearchResultsMapScreen = () => {
     const fetchAccommodationsResult = async () => {
       try {
         const response = await API.graphql(
-          graphqlOperation(listAccommodations),
+          graphqlOperation(listAccommodations, {
+            filter: {
+              maxGuests: {
+                ge: guests,
+              },
+            },
+          }),
         );
         setAccommodations(response.data.listAccommodations.items);
       } catch (e) {
