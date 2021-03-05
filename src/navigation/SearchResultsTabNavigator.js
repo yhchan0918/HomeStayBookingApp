@@ -13,7 +13,7 @@ const SearchResultsTabNavigator = () => {
   const route = useRoute();
   const {guests, viewport} = route.params.params;
   const [accommodations, setAccommodations] = useState([]);
-
+  console.log(viewport);
   useEffect(() => {
     const fetchAccommodationsResult = async () => {
       try {
