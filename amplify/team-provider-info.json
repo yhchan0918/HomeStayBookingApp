@@ -10,6 +10,11 @@
       "StackName": "amplify-homestaybookingapp-dev-202216",
       "StackId": "arn:aws:cloudformation:us-east-1:036269492552:stack/amplify-homestaybookingapp-dev-202216/6fc5a490-7dad-11eb-8ff0-0ea6aa6eaed9",
       "AmplifyAppId": "d3p139az6i5rwf"
+    },
+    "categories": {
+      "auth": {
+        "homestaybookingapp886f89e9": {}
+      }
     }
   }
 }
