@@ -1,6 +1,5 @@
 import React from 'react';
-import {View, Text, Image} from 'react-native';
-import useWindowDimensions from 'react-native/Libraries/Utilities/useWindowDimensions';
+import {View, Text, Image, useWindowDimensions} from 'react-native';
 import styles from './styles';
 
 const CarouselItem = (props) => {

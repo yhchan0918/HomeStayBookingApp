@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View} from 'react-native';
+import {FlatList, View, useWindowDimensions} from 'react-native';
 import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
 
 import places from '../../../assets/data/feed';
@@ -10,6 +10,7 @@ import styles from './styles';
 
 const SearchResultsMapScreen = () => {
   const [selectedPlaceID, setSelectedPlaceID] = useState(null);
+  const width = useWindowDimensions().width;
 
   return (
     <View style={styles.container}>
@@ -31,8 +32,16 @@ const SearchResultsMapScreen = () => {
           />
         ))}
       </MapView>
-      <View style={{position: 'absolute', bottom: 35}}>
-        <CarouselItem post={places[0]} />
+      <View style={{position: 'absolute', bottom: 10}}>
+        <FlatList
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          data={places}
+          renderItem={({item}) => <CarouselItem post={item} />}
+          snapToInterval={width - 60}
+          snapToAlignment={'center'}
+          decelerationRate={'fast'}
+        />
       </View>
     </View>
   );
