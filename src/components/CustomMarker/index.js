@@ -20,7 +20,7 @@ const CustomMarker = (props) => {
           {backgroundColor: isSelected ? 'black' : 'white'},
         ]}>
         <Text style={[styles.txt, {color: isSelected ? 'white' : 'black'}]}>
-          ${place.newPrice}
+          RM{place.newPrice}
         </Text>
       </View>
     </Marker>

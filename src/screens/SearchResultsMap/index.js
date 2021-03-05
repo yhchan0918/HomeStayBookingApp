@@ -1,16 +1,13 @@
 import React, {useState, useEffect, useRef} from 'react';
 import {FlatList, View, useWindowDimensions} from 'react-native';
 import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
-import {API, graphqlOperation} from 'aws-amplify';
 
 import CustomMarker from '../../components/CustomMarker';
 import CarouselItem from '../../components/CarouselItem';
-import {listAccommodations} from '../../graphql/queries';
 import styles from './styles';
 
 const SearchResultsMapScreen = (props) => {
-  const {guests} = props;
-  const [accommodations, setAccommodations] = useState([]);
+  const {accommodations} = props;
   const [selectedPlaceID, setSelectedPlaceID] = useState(null);
 
   const width = useWindowDimensions().width;
@@ -40,26 +37,6 @@ const SearchResultsMapScreen = (props) => {
     };
     mapRef.current.animateToRegion(region);
   }, [selectedPlaceID]);
-
-  useEffect(() => {
-    const fetchAccommodationsResult = async () => {
-      try {
-        const response = await API.graphql(
-          graphqlOperation(listAccommodations, {
-            filter: {
-              maxGuests: {
-                ge: guests,
-              },
-            },
-          }),
-        );
-        setAccommodations(response.data.listAccommodations.items);
-      } catch (e) {
-        console.log(e);
-      }
-    };
-    fetchAccommodationsResult();
-  }, []);
 
   return (
     <View style={styles.container}>

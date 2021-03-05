@@ -18,14 +18,14 @@ const DetailedDestinationPost = (props) => {
         {post.type}. {post.title}
       </Text>
       <Text style={styles.prices}>
-        <Text style={styles.oldPrice}>${post.oldPrice}</Text>
+        <Text style={styles.oldPrice}>RM{post.oldPrice}</Text>
         <Text style={styles.newPrice}>
-          {'  '}${post.newPrice}
+          {'  '}RM{post.newPrice}
         </Text>{' '}
         / night
       </Text>
 
-      <Text style={styles.totalPrice}>${post.totalPrice} total</Text>
+      <Text style={styles.totalPrice}>RM{post.totalPrice} total</Text>
       <Text style={styles.description}>{post.description}</Text>
     </ScrollView>
   );

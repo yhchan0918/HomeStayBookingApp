@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {View, Text, Pressable, SafeAreaView} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
 
 import styles from './styles';
 
@@ -10,6 +10,7 @@ const BookingGuestsScreen = () => {
   const [infantsPax, setInfantsPax] = useState(0);
 
   const navigation = useNavigation();
+  const route = useRoute();
   const onPressHandler = () => {
     navigation.navigate('Home', {
       screen: 'Explore',
@@ -19,6 +20,7 @@ const BookingGuestsScreen = () => {
           screen: 'List',
           params: {
             guests: adultsPax + childrenPax,
+            viewport: route.params.viewport,
           },
         },
       },

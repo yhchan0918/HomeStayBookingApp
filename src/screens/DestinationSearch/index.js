@@ -16,7 +16,9 @@ const DestinationSearchScreen = () => {
       <GooglePlacesAutocomplete
         placeholder="Where are you going?"
         onPress={(data, details = null) => {
-          navigation.navigate('BookingGuests');
+          navigation.navigate('BookingGuests', {
+            viewport: details.geometry.viewport,
+          });
         }}
         styles={{
           textInput: styles.input,

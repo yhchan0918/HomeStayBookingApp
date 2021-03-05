@@ -30,7 +30,7 @@ const CarouselItem = (props) => {
             {post.type}. {post.title}
           </Text>
           <Text style={styles.prices}>
-            <Text style={styles.newPrice}>${post.newPrice}</Text> / night
+            <Text style={styles.newPrice}>RM{post.newPrice}</Text> / night
           </Text>
         </View>
       </View>
