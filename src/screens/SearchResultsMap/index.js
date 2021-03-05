@@ -43,10 +43,10 @@ const SearchResultsMapScreen = () => {
         provider={PROVIDER_GOOGLE}
         style={styles.map}
         initialRegion={{
-          latitude: 28.3279822,
-          longitude: -16.5124847,
-          latitudeDelta: 0.8,
-          longitudeDelta: 0.8,
+          latitude: 3.191224778394676,
+          longitude: 101.70287153673175,
+          latitudeDelta: 0.1,
+          longitudeDelta: 0.1,
         }}>
         {places.map((place) => (
           <CustomMarker
