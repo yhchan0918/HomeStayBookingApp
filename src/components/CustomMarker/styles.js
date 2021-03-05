@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     padding: 5,
     borderRadius: 20,
-    borderWidth: 1,
+    borderWidth: 0.8,
     borderColor: 'grey',
   },
   txt: {
