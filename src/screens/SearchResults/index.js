@@ -1,13 +1,31 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, FlatList} from 'react-native';
 import DestinationPost from '../../components/DestinationPost';
-import feed from '../../../assets/data/feed';
+import {API, graphqlOperation} from 'aws-amplify';
+
+import {listAccommodations} from '../../graphql/queries';
 
 const SearchResultsScreen = () => {
+  const [accommodations, setAccommodations] = useState([]);
+
+  useEffect(() => {
+    const fetchAccommodationsResult = async () => {
+      try {
+        const response = await API.graphql(
+          graphqlOperation(listAccommodations),
+        );
+        setAccommodations(response.data.listAccommodations.items);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    fetchAccommodationsResult();
+  }, []);
+
   return (
     <View>
       <FlatList
-        data={feed}
+        data={accommodations}
         renderItem={({item}) => <DestinationPost post={item} />}
       />
     </View>

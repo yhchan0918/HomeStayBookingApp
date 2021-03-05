@@ -1,15 +1,17 @@
 import React, {useState, useEffect, useRef} from 'react';
 import {FlatList, View, useWindowDimensions} from 'react-native';
 import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
+import {API, graphqlOperation} from 'aws-amplify';
 
-import places from '../../../assets/data/feed';
 import CustomMarker from '../../components/CustomMarker';
 import CarouselItem from '../../components/CarouselItem';
-
+import {listAccommodations} from '../../graphql/queries';
 import styles from './styles';
 
 const SearchResultsMapScreen = () => {
+  const [accommodations, setAccommodations] = useState([]);
   const [selectedPlaceID, setSelectedPlaceID] = useState(null);
+
   const width = useWindowDimensions().width;
   const flatListRef = useRef();
   const mapRef = useRef();
@@ -23,18 +25,34 @@ const SearchResultsMapScreen = () => {
 
   useEffect(() => {
     if (!selectedPlaceID || !flatListRef) return;
-    const index = places.findIndex((place) => place.id === selectedPlaceID);
+    const index = accommodations.findIndex(
+      (place) => place.id === selectedPlaceID,
+    );
     flatListRef.current.scrollToIndex({index});
 
-    const selectedPlace = places[index];
+    const selectedPlace = accommodations[index];
     const region = {
-      latitude: selectedPlace.coordinate.latitude,
-      longitude: selectedPlace.coordinate.longitude,
+      latitude: selectedPlace.latitude,
+      longitude: selectedPlace.longitude,
       laititudeDelta: 0.8,
       longitudeDelta: 0.8,
     };
     mapRef.current.animateToRegion(region);
   }, [selectedPlaceID]);
+
+  useEffect(() => {
+    const fetchAccommodationsResult = async () => {
+      try {
+        const response = await API.graphql(
+          graphqlOperation(listAccommodations),
+        );
+        setAccommodations(response.data.listAccommodations.items);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    fetchAccommodationsResult();
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -48,7 +66,7 @@ const SearchResultsMapScreen = () => {
           latitudeDelta: 0.1,
           longitudeDelta: 0.1,
         }}>
-        {places.map((place) => (
+        {accommodations.map((place) => (
           <CustomMarker
             isSelected={place.id === selectedPlaceID}
             onPress={() => setSelectedPlaceID(place.id)}
@@ -63,7 +81,7 @@ const SearchResultsMapScreen = () => {
           bottom: 10,
         }}>
         <FlatList
-          data={places}
+          data={accommodations}
           renderItem={({item}) => <CarouselItem post={item} />}
           ref={flatListRef}
           horizontal

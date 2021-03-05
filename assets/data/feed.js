@@ -12,10 +12,9 @@ export default [
     oldPrice: 280,
     newPrice: 250,
     totalPrice: 320,
-    coordinate: {
-      latitude: 1.5184,
-      longitude: 103.65808,
-    },
+    maxGuests: 5,
+    latitude: 1.5184,
+    longitude: 103.65808,
   },
   {
     id: '1',

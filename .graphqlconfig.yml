@@ -1,0 +1,14 @@
+projects:
+  homestaybookingapp:
+    schemaPath: >-
+      Users/yhchan/Documents/Fullstack/reactnative/HomestayBookingApp/graphql/schema.json
+    includes:
+      - src/graphql/**/*.js
+    excludes:
+      - ./amplify/**
+    extensions:
+      amplify:
+        codeGenTarget: javascript
+        generatedFileName: ''
+        docsFilePath: >-
+          /Users/yhchan/Documents/Fullstack/reactnative/HomestayBookingApp/graphql

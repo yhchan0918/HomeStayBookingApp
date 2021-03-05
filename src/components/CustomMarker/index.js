@@ -6,8 +6,14 @@ import styles from './styles';
 
 const CustomMarker = (props) => {
   const {place, isSelected, onPress} = props;
+
   return (
-    <Marker coordinate={place.coordinate} onPress={onPress}>
+    <Marker
+      coordinate={{
+        latitude: place.latitude,
+        longitude: place.longitude,
+      }}
+      onPress={onPress}>
       <View
         style={[
           styles.container,

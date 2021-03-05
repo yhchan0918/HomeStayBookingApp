@@ -1,0 +1,15 @@
+type Accommodation @model {
+  id: ID!
+  image: String!
+  type: String!
+  title: String!
+  maxGuests: Int!
+  description: String!
+  bed: Int!
+  bedroom: Int!
+  oldPrice: Float!
+  newPrice: Float!
+  totalPrice: Float!
+  latitude: Float!
+  longitude: Float!
+}
