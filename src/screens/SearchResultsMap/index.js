@@ -57,7 +57,11 @@ const SearchResultsMapScreen = () => {
           />
         ))}
       </MapView>
-      <View style={{position: 'absolute', bottom: 10}}>
+      <View
+        style={{
+          position: 'absolute',
+          bottom: 10,
+        }}>
         <FlatList
           data={places}
           renderItem={({item}) => <CarouselItem post={item} />}

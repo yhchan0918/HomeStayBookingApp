@@ -2,7 +2,7 @@ import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
-    height: 120,
+    height: 130,
     padding: 5,
     shadowColor: '#000',
     shadowOffset: {
@@ -11,7 +11,6 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.36,
     shadowRadius: 6.68,
-
     elevation: 11,
   },
   innerContainer: {
