@@ -10,6 +10,7 @@ import HomeScreen from '../screens/Home';
 import ExploreNavigator from './ExploreNavigator';
 import SearchResultsMapScreen from '../screens/SearchResultsMap';
 import DestinationDetailScreen from '../screens/DestinationDetail';
+import ProfileScreen from '../screens/Profile';
 
 const Tab = createBottomTabNavigator();
 
@@ -57,7 +58,7 @@ const HomeTabNavigator = () => {
       />
       <Tab.Screen
         name={'Profile'}
-        component={HomeScreen}
+        component={ProfileScreen}
         options={{
           tabBarIcon: ({color}) => (
             <EvilIcons name="user" size={25} color={color} />
