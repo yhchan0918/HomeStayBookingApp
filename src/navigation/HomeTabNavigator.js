@@ -8,8 +8,6 @@ import EvilIcons from 'react-native-vector-icons/EvilIcons';
 
 import HomeScreen from '../screens/Home';
 import ExploreNavigator from './ExploreNavigator';
-import SearchResultsMapScreen from '../screens/SearchResultsMap';
-import DestinationDetailScreen from '../screens/DestinationDetail';
 import ProfileScreen from '../screens/Profile';
 
 const Tab = createBottomTabNavigator();
@@ -39,11 +37,11 @@ const HomeTabNavigator = () => {
         }}
       />
       <Tab.Screen
-        name={'Airbnb'}
+        name={'Home'}
         component={HomeScreen}
         options={{
           tabBarIcon: ({color}) => (
-            <FontAwesome5 name="airbnb" size={25} color={color} />
+            <Feather name="home" size={27} color={color} />
           ),
         }}
       />

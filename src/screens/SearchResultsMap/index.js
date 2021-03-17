@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useRef} from 'react';
-import {FlatList, View, useWindowDimensions} from 'react-native';
+import {FlatList, View, Dimensions} from 'react-native';
 import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
 
 import CustomMarker from '../../components/CustomMarker';
@@ -9,8 +9,11 @@ import styles from './styles';
 const SearchResultsMapScreen = (props) => {
   const {accommodations} = props;
   const [selectedPlaceID, setSelectedPlaceID] = useState(null);
+  const {width, height} = Dimensions.get('window');
+  const ASPECT_RATIO = width / height;
+  const LATITUDE_DELTA = 0.0922;
+  const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
-  const width = useWindowDimensions().width;
   const flatListRef = useRef();
   const mapRef = useRef();
   const viewConfig = useRef({itemVisiblePercentThreshold: 70});
@@ -29,11 +32,12 @@ const SearchResultsMapScreen = (props) => {
     flatListRef.current.scrollToIndex({index});
 
     const selectedPlace = accommodations[index];
+
     const region = {
       latitude: selectedPlace.latitude,
       longitude: selectedPlace.longitude,
-      laititudeDelta: 0.8,
-      longitudeDelta: 0.8,
+      laititudeDelta: LATITUDE_DELTA,
+      longitudeDelta: LONGITUDE_DELTA,
     };
     mapRef.current.animateToRegion(region);
   }, [selectedPlaceID]);
@@ -47,8 +51,8 @@ const SearchResultsMapScreen = (props) => {
         initialRegion={{
           latitude: 3.191224778394676,
           longitude: 101.70287153673175,
-          latitudeDelta: 0.1,
-          longitudeDelta: 0.1,
+          latitudeDelta: LATITUDE_DELTA,
+          longitudeDelta: LONGITUDE_DELTA,
         }}>
         {accommodations.map((place) => (
           <CustomMarker
